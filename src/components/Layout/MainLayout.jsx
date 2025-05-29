@@ -48,10 +48,10 @@ export default function MainLayout({ children, activeCategory, setActiveCategory
               label={category.label}
               active={activeCategory === category.id}
               onClick={() => handleCategoryClick(category.id)}
-              color={activeCategory === category.id ? '#e8590c' : 'dark.8'}
+              color={activeCategory === category.id ? '#cc2e2e' : 'dark.8'}
               style={{ 
                 fontWeight: 500,
-                color: activeCategory === category.id ? '#e8590c' : '#212529'
+                color: activeCategory === category.id ? '#cc2e2e' : '#212529'
               }}
               bg={activeCategory === category.id ? '#fff5eb' : 'transparent'}
             />

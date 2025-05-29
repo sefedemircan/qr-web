@@ -29,6 +29,20 @@ const theme = createTheme({
       '#cc5d00',
       '#a64b00'
     ],
+    // Kırmızı tonları - vurgu, uyarı veya özel teklifler için
+    red: [
+      '#fff5f5', // çok açık pembe - arka plan veya hover efekti için
+      '#ffe0e0', // daha az göz yoran soft kırmızı
+      '#ffc2c2', // pastel kırmızı
+      '#ffa3a3', // iştah açıcı ama yumuşak
+      '#ff8585', // kullanıcı dostu sıcaklık
+      '#ff6666', // dikkat çekici ama dengeli
+      '#f74c4c', // lezzet hissini artırır
+      '#e63939', // vurgu öğeleri için
+      '#cc2e2e', // buton veya ana başlıklar
+      '#b02525'  // güçlü çağrılar için (örneğin "Sipariş Ver" butonu)
+    ],
+    
     gray: [
       '#f8f9fa',
       '#f1f3f4',

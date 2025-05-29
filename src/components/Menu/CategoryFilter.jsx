@@ -24,7 +24,7 @@ export default function CategoryFilter({ categories, activeCategory, setActiveCa
             fw={500}
             style={{
               minWidth: 'max-content',
-              backgroundColor: activeCategory === category.id ? '#e8590c' : '#f8f9fa',
+              backgroundColor: activeCategory === category.id ? '#cc2e2e' : '#f8f9fa',
               color: activeCategory === category.id ? 'white' : '#6c757d',
               border: 'none',
               boxShadow: activeCategory === category.id ? 'none' : '0 1px 3px rgba(0,0,0,0.1)'

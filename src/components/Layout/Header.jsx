@@ -1,19 +1,22 @@
 'use client';
 
-import { Group, Burger, Title, ActionIcon, Box, Image } from '@mantine/core';
+import { Group, Burger, Title, ActionIcon, Box, Image, Text } from '@mantine/core';
 import { IconShoppingCart, IconSearch, IconMessageChatbotFilled } from '@tabler/icons-react';
 
 export default function Header({ opened, toggle }) {
   return (
-    <Box bg="brand.7" h="100%">
+    <Box bg="red.8" h="100%">
       <Group justify="space-between" h="100%" px="md">
         <Group>
-          <Burger 
+          {/*<Burger 
             opened={opened} 
             onClick={toggle} 
             size="sm" 
             color="white"
-          />
+          />*/}
+          <Text c="white" fw={700}>
+            Restaurant
+          </Text>
         </Group>
 
         <Group>

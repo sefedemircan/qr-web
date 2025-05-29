@@ -1,6 +1,5 @@
 const menuData = {
   categories: [
-    { id: 'all', label: 'Tümü' },
     { id: 'burger', label: 'Burger' },
     { id: 'pizza', label: 'Pizza' },
     { id: 'sandwich', label: 'Sandwich' },
