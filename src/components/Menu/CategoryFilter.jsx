@@ -2,9 +2,11 @@
 
 import { ScrollArea, Group, Button } from '@mantine/core';
 import { useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function CategoryFilter({ categories, activeCategory, setActiveCategory }) {
   const viewport = useRef(null);
+  const { t } = useLanguage();
 
   const handleCategoryClick = (categoryId) => {
     setActiveCategory(categoryId);
@@ -30,7 +32,7 @@ export default function CategoryFilter({ categories, activeCategory, setActiveCa
               boxShadow: activeCategory === category.id ? 'none' : '0 1px 3px rgba(0,0,0,0.1)'
             }}
           >
-            {category.label}
+            {t(category.id)}
           </Button>
         ))}
       </Group>

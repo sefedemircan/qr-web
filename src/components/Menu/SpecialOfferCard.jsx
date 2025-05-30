@@ -1,8 +1,10 @@
 'use client';
 
 import { Card, Text, Group, Badge, Image, Title, Stack, Box, UnstyledButton } from '@mantine/core';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function SpecialOfferCard({ offer, onClick }) {
+  const { t } = useLanguage();
   const discountedPrice = offer.price * (1 - offer.discount / 100);
   
   return (
@@ -41,11 +43,11 @@ export default function SpecialOfferCard({ offer, onClick }) {
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}
             >
-              %{offer.discount} İNDİRİM
+              %{offer.discount} {t('discount').toUpperCase()}
             </Badge>
             
             <Title order={2} fw={700} size="xl" style={{ lineHeight: 1.2 }}>
-              {offer.name}
+              {t(offer.name)}
             </Title>
             
             <Group gap="xs">
@@ -61,7 +63,7 @@ export default function SpecialOfferCard({ offer, onClick }) {
           <Box style={{ position: 'relative', minWidth: 100 }}>
             <Image
               src={offer.image}
-              alt={offer.name}
+              alt={t(offer.id) || offer.name}
               w={100}
               h={100}
               style={{ 

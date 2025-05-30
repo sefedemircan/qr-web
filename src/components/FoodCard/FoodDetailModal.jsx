@@ -2,38 +2,73 @@
 
 import { Modal, Image, Text, Group, Stack, Badge, Box, Button, Divider } from '@mantine/core';
 import { IconArrowBack, IconHeart, IconShare, IconMilk, IconWheat, IconNut } from '@tabler/icons-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function FoodDetailModal({ food, opened, close }) {
+  const { t, currentLanguage } = useLanguage();
+  
   // Alerjen bilgilerini tanımla
   const allergens = {
     // Burger kategorisi
     'double-beef-burger': ['gluten', 'lactose'],
     'chicken-burger': ['gluten', 'lactose'],
+    'beef-burger': ['gluten', 'lactose'],
+    'veggie-burger': ['gluten'],
+    'fish-burger': ['gluten'],
+    'bacon-burger': ['gluten', 'lactose'],
+    'mushroom-burger': ['gluten', 'lactose'],
+    'spicy-burger': ['gluten', 'lactose'],
+    'classic-burger': ['gluten', 'lactose'],
     
     // Pizza kategorisi
     'cheese-pizza': ['gluten', 'lactose'],
     'pepperoni-pizza': ['gluten', 'lactose'],
+    'margherita-pizza': ['gluten', 'lactose'],
+    'mushroom-pizza': ['gluten', 'lactose'],
+    'meat-lovers-pizza': ['gluten', 'lactose'],
+    'veggie-pizza': ['gluten', 'lactose'],
+    'bbq-chicken-pizza': ['gluten', 'lactose'],
+    'hawaiian-pizza': ['gluten', 'lactose'],
     
     // Sandwich kategorisi
     'club-sandwich': ['gluten', 'lactose'],
+    'tuna-sandwich': ['gluten'],
+    'grilled-chicken-sandwich': ['gluten'],
+    'veggie-sandwich': ['gluten'],
+    'blt-sandwich': ['gluten'],
+    'turkey-sandwich': ['gluten', 'lactose'],
+    'steak-sandwich': ['gluten', 'lactose'],
+    'caprese-sandwich': ['gluten', 'lactose'],
     
-    // Katsu kategorisi
-    'spicy-chicken': ['gluten'],
-    'garlic-chicken': ['gluten'],
-    'beef-katsu': ['gluten'],
+    // Salatalar kategorisi (genelde alerjen az)
+    'caesar-salad': ['lactose'],
+    'turkish-salad': ['lactose'],
+    'chicken-salad': [],
+    'tuna-salad': [],
+    'avocado-salad': [],
+    'quinoa-salad': [],
+    'mediterranean-salad': ['lactose'],
+    'arugula-salad': ['lactose', 'nuts'],
     
-    // Pasta kategorisi
-    'pappardelle': ['gluten', 'lactose'],
-    
-    // İçecekler kategorisi (genelde alerjen yok)
+    // İçecekler kategorisi
     'fresh-lemonade': [],
     'iced-coffee': ['lactose'],
     'strawberry-smoothie': ['lactose'],
+    'mango-juice': [],
+    'cola': [],
+    'orange-juice': [],
+    'green-tea': [],
+    'milkshake': ['lactose'],
     
     // Tatlılar kategorisi
-    'chocolate-souffle': ['gluten', 'lactose', 'nuts'],
+    'chocolate-souffle': ['gluten', 'lactose'],
     'tiramisu': ['gluten', 'lactose'],
-    'cheesecake': ['gluten', 'lactose']
+    'cheesecake': ['gluten', 'lactose'],
+    'chocolate-cake': ['gluten', 'lactose'],
+    'ice-cream-sundae': ['lactose', 'nuts'],
+    'fruit-tart': ['gluten', 'lactose'],
+    'baklava': ['gluten', 'nuts'],
+    'creme-brulee': ['lactose']
   };
 
   // İçindekiler
@@ -75,6 +110,15 @@ export default function FoodDetailModal({ food, opened, close }) {
     'nuts': <IconNut size={14} color="#cc2e2e" />
   };
 
+  const getAllergenName = (allergen) => {
+    const allergenNames = {
+      tr: { gluten: 'Gluten', lactose: 'Laktoz', nuts: 'Kuruyemiş' },
+      en: { gluten: 'Gluten', lactose: 'Lactose', nuts: 'Nuts' },
+      ar: { gluten: 'جلوتين', lactose: 'لاكتوز', nuts: 'مكسرات' }
+    };
+    return allergenNames[currentLanguage]?.[allergen] || allergen;
+  };
+
   const currentAllergens = food && allergens[food.id] ? allergens[food.id] : [];
   const currentIngredients = food && ingredients[food.id] ? ingredients[food.id] : [];
 
@@ -100,7 +144,7 @@ export default function FoodDetailModal({ food, opened, close }) {
           <Image
             src={food.image}
             height={160}
-            alt={food.name}
+            alt={t(food.id) || food.name}
             style={{ 
               objectFit: 'cover',
               borderTopLeftRadius: '8px',
@@ -142,7 +186,7 @@ export default function FoodDetailModal({ food, opened, close }) {
                 fontWeight: 600
               }}
             >
-              %25 İndirim
+              %25 {t('discount')}
             </Badge>
           )}
         </Box>
@@ -153,10 +197,10 @@ export default function FoodDetailModal({ food, opened, close }) {
           <Group justify="space-between" align="flex-start">
             <Box style={{ flex: 1 }}>
               <Text fw={700} size="lg" c="dark.9" mb={2}>
-                {food.name}
+                {t(food.id) || food.name}
               </Text>
               <Text size="xs" c="gray.6" mb="xs">
-                {currentIngredients.join(' • ')}
+                {t(`${food.id}-desc`) || food.description}
               </Text>
             </Box>
             <Text fw={700} size="xl" c="#cc2e2e" ml="md">
@@ -176,7 +220,7 @@ export default function FoodDetailModal({ food, opened, close }) {
                   radius="md"
                   style={{ color: '#cc2e2e', fontSize: '11px' }}
                 >
-                  {allergen === 'gluten' ? 'Gluten' : allergen === 'lactose' ? 'Laktoz' : 'Kuruyemiş'}
+                  {getAllergenName(allergen)}
                 </Badge>
               ))}
             </Group>
@@ -192,7 +236,7 @@ export default function FoodDetailModal({ food, opened, close }) {
               fw={600}
               fullWidth
             >
-              Sepete Ekle - {food.price}₺
+              {t('addToCart')} - {food.price}₺
             </Button>
           </Group>
         </Stack>

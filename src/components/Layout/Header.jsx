@@ -1,11 +1,14 @@
 'use client';
 
 import { Group, Burger, Title, ActionIcon, Box, Image, Text } from '@mantine/core';
-import { IconShoppingCart, IconSearch, IconMessageChatbotFilled } from '@tabler/icons-react';
+import { IconShoppingCart, IconMessageChatbotFilled } from '@tabler/icons-react';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '../../contexts/LanguageContext';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 export default function Header({ opened, toggle }) {
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleChatbotClick = () => {
     router.push('/chatbot');
@@ -22,14 +25,12 @@ export default function Header({ opened, toggle }) {
             color="white"
           />*/}
           <Text c="white" fw={700}>
-            Restaurant
+            {t('restaurant')}
           </Text>
         </Group>
 
         <Group>
-          <ActionIcon variant="transparent" c="white" aria-label="Ara">
-            <IconSearch style={{ width: 20, height: 20 }} stroke={1.5} />
-          </ActionIcon>
+          <LanguageSwitcher />
           <ActionIcon 
             variant="transparent" 
             c="white" 

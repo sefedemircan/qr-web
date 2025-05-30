@@ -2,8 +2,11 @@
 
 import { Card, Image, Text, Group, Stack, Badge, UnstyledButton, Box } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function FoodCard({ food, onClick }) {
+  const { t } = useLanguage();
+  
   // Popüler veya önerilen ürünleri belirlemek için
   const isPopular = food.id === 'double-beef-burger' || food.id === 'cheese-pizza' || food.id === 'tiramisu';
   const isRecommended = food.id === 'chicken-burger' || food.id === 'chocolate-souffle' || food.id === 'fresh-lemonade';
@@ -35,7 +38,7 @@ export default function FoodCard({ food, onClick }) {
           <Image
             src={food.image}
             height={120}
-            alt={food.name}
+            alt={t(food.id) || food.name}
             style={{ objectFit: 'cover' }}
           />
           
@@ -98,7 +101,7 @@ export default function FoodCard({ food, onClick }) {
 
         <Stack gap="xs" mt="sm">
           <Text fw={600} size="sm" lineClamp={1} c="dark.8">
-            {food.name}
+            {t(food.id) || food.name}
           </Text>
           
           <Text fw={700} size="lg" c="dark.9">

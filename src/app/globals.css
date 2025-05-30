@@ -35,6 +35,48 @@ a {
   text-decoration: none;
 }
 
+/* RTL Dil Desteği */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .mantine-Group-root {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .mantine-Stack-root {
+  text-align: right;
+}
+
+[dir="rtl"] .mantine-Text-root {
+  text-align: right;
+}
+
+[dir="rtl"] .mantine-Title-root {
+  text-align: right;
+}
+
+/* RTL için özel düzenlemeler */
+[dir="rtl"] .language-switcher {
+  direction: ltr;
+}
+
+[dir="rtl"] .food-price {
+  direction: ltr;
+}
+
+/* Dil butonu stil */
+.language-button:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Arapça font desteği */
+[lang="ar"] {
+  font-family: 'Noto Sans Arabic', 'Arial Unicode MS', Arial, sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
